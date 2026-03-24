@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lógica na Prática (Interativo)</title>
+
+  <style>
+    /* ==========================
+       🎨 VARIÁVEIS (ALUNOS PODEM BRINCAR AQUI)
+    ========================== */
+    :root {
+      --cor-principal: #b47a0d00;
+      --cor-secundaria: #303d0b;
+      --cor-fundo: #6e1515;
+      --cor-card: #ff3a3a91;
+      --cor-texto: #360663;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+    }
+
+    .box {
+      background: var(--cor-card);
+      padding: 15px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .box:hover {
+      transform: scale(1.02);
+    }
+
+    /* Estilo para as observações */
+    .observacao {
+      margin-top: 12px;
+      padding: 8px;
+      background: #fef9c3;
+      border-left: 4px solid #eab308;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #854d0e;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--cor-principal);
+      color: white;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--cor-secundaria);
+    }
+
+    input {
+      padding: 6px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .resultado {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .customizador {
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎮 Brincando com Lógica + Frontend</h1>
+
+<!-- 🎨 PERSONALIZAÇÃO VISUAL -->
+<div class="customizador">
+  <strong>🎨 Personalize as cores:</strong><br>
+  Cor principal: <input type="color" onchange="mudarCor('--cor-principal', this.value)">
+  Cor secundária: <input type="color" onchange="mudarCor('--cor-secundaria', this.value)">
+  Fundo: <input type="color" onchange="mudarCor('--cor-fundo', this.value)">
+</div>
+
+<div class="grid">
+
+<!-- ========== BOX 1 - CONDIÇÃO SIMPLES ========== -->
+<!-- 📝 OBSERVAÇÃO 1: Insira sua observação aqui (substitua este texto) -->
+<div class="box">
+  <h3>1. Condição Simples (if)</h3>
+  <input type="number" id="idade" placeholder="Digite idade">
+  <button onclick="verificarIdade()">Verificar</button>
+  <div class="resultado" id="res1"></div>
+  <div class="observacao">
+    📌 <strong>OBS:</strong> nota do bafometro
+  </div>
+</div>
+
+<!-- ========== BOX 2 - IF/ELSE ========== -->
+<!-- 📝 OBSERVAÇÃO 2: Insira sua observação aqui (substitua este texto) -->
+<div class="box">
+  <h3>2. if / else</h3>
+  <input type="number" id="nota" placeholder="Digite nota">
+  <button onclick="verificarNota()">Verificar</button>
+  <div class="resultado" id="res2"></div>
+  <div class="observacao">
+    📌 <strong>OBS:</strong> fala tua idade pra saber se posso te dar cachaça
+  </div>
+</div>
+
+<!-- ========== BOX 3 - && (E) ========== -->
+<!-- 📝 OBSERVAÇÃO 3: Insira sua observação aqui (substitua este texto) -->
+<div class="box">
+  <h3>3. Condição com E (&&)</h3>
+  <input type="number" id="salario" placeholder="Salário">
+  <input type="number" id="tempo" placeholder="Tempo">
+  <button onclick="verificarBonus()">Verificar</button>
+  <div class="resultado" id="res3"></div>
+  <div class="observacao">
+    📌 <strong>OBS:</strong> quanto dinheiro e quantas horas de jogo tu tem?
+  </div>
+</div>
+
+<!-- ========== BOX 4 - SWITCH/CASE ========== -->
+<!-- 📝 OBSERVAÇÃO 4: Insira sua observação aqui (substitua este texto) -->
+<div class="box">
+  <h3>4. switch / case</h3>
+  <input type="text" id="dia" placeholder="Ex: sexta">
+  <button onclick="verificarDia()">Verificar</button>
+  <div class="resultado" id="res4"></div>
+  <div class="observacao">
+    📌 <strong>OBS:</strong> "quer ver meu mano?
+</div>
+
+</div>
+
+<script>
+
+// 🎨 ALTERAR CORES DINAMICAMENTE
+function mudarCor(variavel, valor) {
+  document.documentElement.style.setProperty(variavel, valor);
+}
+
+// ==========================
+// 👉 CONDIÇÃO SIMPLES
+// ==========================
+function verificarIdade() {
+  let idade = Number(document.getElementById("idade").value);
+  let res1 = document.getElementById("res1");
+
+  if (idade >=5) {
+    res1.innerText = "tu bebeu 50 garrafas de vodka cara? pode sair desse carro";
+  } else {
+    res1.innerText = "pode ir nessa mano,e nao bebe mais nada";
+  }
+}
+
+// ==========================
+// 👉 IF / ELSE
+// ==========================
+function verificarNota() {
+  let nota = Number(document.getElementById("nota").value);
+  let res2 = document.getElementById("res2");
+
+  if (nota >= 18) {
+    res2.innerText = "pode entrar elemento 🎉";
+  } else {
+    res2.innerText = "ta me tirando rapaz?pode vazar,menor nao bebe 😢";
+  }
+}
+
+// ==========================
+// 👉 &&
+// ==========================
+function verificarBonus() {
+  let salario = Number(document.getElementById("salario").value);
+  let tempo = Number(document.getElementById("tempo").value);
+  let res3 = document.getElementById("res3");
+
+  if (salario > 100 && tempo >= 2) {
+    res3.innerText = "vai tocar uma grama";
+  } else {
+    res3.innerText = "tu é normal";
+  }
+}
+
+// ==========================
+// 👉 SWITCH
+// ==========================
+function verificarDia() {
+  let dia = document.getElementById("dia").value.toLowerCase();
+  let res4 = document.getElementById("res4");
+  let mensagem;
+
+  switch(dia) {
+    case "sim":
+      mensagem = "abra esse link  https://www.google.com/imgres?q=carlinhos&imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fcarlos%2Fimages%2F7%2F78%2FCarlinhos.png%2Frevision%2Flatest%2Fthumbnail%2Fwidth%2F360%2Fheight%2F450%3Fcb%3D20240304180357%26path-prefix%3Dpt-br&imgrefurl=https%3A%2F%2Fcarlos.fandom.com%2Fpt-br%2Fwiki%2FCarlinhos&docid=jNUHwmNb46QK6M&tbnid=8jvs6l6xhhPHcM&vet=12ahUKEwjftf3SrrmTAxU9ppUCHdoOHB0QnPAOegQIEBAB..i&w=360&h=344&hcb=2&ved=2ahUKEwjftf3SrrmTAxU9ppUCHdoOHB0QnPAOegQIEBAB";
+      break;
+    case "nao":
+      mensagem = "ok...";
+      break;
+    case "talvez":
+      mensagem = "cofirma ai";
+      break;
+    default:
+      mensagem = "blz";
+  }
+
+  res4.innerText = mensagem;
+}
+
+</script>
+
+</body>
+</html>
